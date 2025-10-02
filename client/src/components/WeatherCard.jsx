@@ -2,17 +2,13 @@
 import { StarIcon as StarSolid } from "@heroicons/react/24/solid";
 import { StarIcon as StarOutline } from "@heroicons/react/24/outline";
 
-export default function WeatherCard({ weather, favorites, setFavorites, setError }) {
+export default function WeatherCard({ weather, favorites, setFavorites, setError, deleteFavorite }) {
   const isFavorite = favorites.includes(weather.city);
 
   const toggleFavorite = async () => {
     try {
       if (isFavorite) {
-        const res = await fetch(`http://localhost:5000/api/favorites/${weather.city}`, {
-          method: "DELETE",
-        });
-        const updated = await res.json();
-        setFavorites(updated);
+        await deleteFavorite(weather.city);
       } else {
         const res = await fetch("http://localhost:5000/api/favorites", {
           method: "POST",

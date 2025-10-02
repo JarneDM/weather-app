@@ -26,6 +26,18 @@ export default function App() {
     }
   };
 
+  const deleteFavorite = async (cityName) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/favorites/${cityName}`, {
+        method: "DELETE",
+      });
+      const updated = await res.json();
+      setFavorites(updated);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   useEffect(() => {
     const loadFavorites = async () => {
       try {
@@ -69,9 +81,17 @@ export default function App() {
           {error && <p className="text-red-500 text-sm">{error}</p>}
         </form>
 
-        {weather && <WeatherCard weather={weather} favorites={favorites} setFavorites={setFavorites} setError={setError} />}
+        {weather && (
+          <WeatherCard
+            weather={weather}
+            favorites={favorites}
+            setFavorites={setFavorites}
+            setError={setError}
+            deleteFavorite={deleteFavorite}
+          />
+        )}
 
-        <FavoritesCard favorites={favorites} setFavorites={setFavorites} fetchWeather={fetchWeather} setError={setError} />
+        <FavoritesCard favorites={favorites} fetchWeather={fetchWeather} deleteFavorite={deleteFavorite} />
       </div>
     </div>
   );
