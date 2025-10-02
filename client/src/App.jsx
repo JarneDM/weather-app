@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WeatherCard from "./components/WeatherCard";
 import FavoritesCard from "./components/FavoritesCard";
 
@@ -26,36 +26,53 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    const loadFavorites = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/favorites");
+        const favs = await res.json();
+        setFavorites(favs);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+    loadFavorites();
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (city) fetchWeather(city);
   };
 
+  useEffect(() => {
+    if (!weather) fetchWeather("ghent");
+  });
+
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 p-4">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col items-center space-y-4 bg-white bg-opacity-80 backdrop-blur-md border border-gray-300 rounded-xl shadow-lg p-6 w-80"
-      >
-        <h1 className="text-2xl font-bold text-blue-700">Weather App</h1>
-        <input
-          className="border border-gray-400 p-2 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Enter city..."
-        />
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold p-2 rounded-lg w-full transition-colors">
-          {loading ? "Loading..." : "Get Weather"}
-        </button>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-      </form>
+    <div className="flex flex-col items-center lg:justify-center min-h-screen bg-[url(./assets/background.jpg)] bg-no-repeat bg-cover">
+      <div className="w-[30%] grid items-center">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center space-y-4 bg-white/30 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 w-full"
+        >
+          <h1 className="text-2xl text-black underline">Weather App</h1>
+          <input
+            className="border border-white p-2 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-white text-black"
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Enter city..."
+          />
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold p-2 rounded-lg w-fit transition-colors backdrop-blur-lg">
+            {loading ? "Loading..." : "Get Weather"}
+          </button>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+        </form>
 
-      {weather && <WeatherCard weather={weather} favorites={favorites} setFavorites={setFavorites} setError={setError} />}
+        {weather && <WeatherCard weather={weather} favorites={favorites} setFavorites={setFavorites} setError={setError} />}
 
-      {favorites.length > 0 && (
         <FavoritesCard favorites={favorites} setFavorites={setFavorites} fetchWeather={fetchWeather} setError={setError} />
-      )}
+      </div>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function WeatherCard({ weather, favorites, setFavorites, setError
   };
 
   return (
-    <div className="mt-6 bg-white bg-opacity-80 backdrop-blur-md border border-gray-300 rounded-xl shadow-lg p-6 w-80 text-center relative">
+    <div className="mt-6 bg-white/30 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 w-full text-center relative">
       <button onClick={toggleFavorite} className="absolute top-3 right-3 text-yellow-400">
         {isFavorite ? <StarSolid className="w-6 h-6" /> : <StarOutline className="w-6 h-6" />}
       </button>

@@ -15,14 +15,14 @@ export default function FavoritesCard({ favorites, setFavorites, fetchWeather, s
   }, [setFavorites, setError]);
 
   return (
-    <div className="mt-6 bg-white bg-opacity-80 backdrop-blur-md border border-gray-300 rounded-xl shadow-lg p-4 w-80">
+    <div className="mt-6 bg-white/30 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-4 w-full">
       <h3 className="text-lg font-bold mb-2">Favorites</h3>
       <ul className="flex flex-col space-y-2 max-h-36 overflow-y-auto">
         {favorites.map((fav) => (
           <li key={fav}>
             <button
               onClick={() => fetchWeather(fav)}
-              className="w-full text-left p-3 rounded-lg bg-blue-100 hover:bg-blue-200 shadow-sm hover:shadow-md transition-all duration-200 font-medium text-blue-800"
+              className="w-[95%] text-left p-3 rounded-lg bg-white/40 backdrop-blur-sm border border-white/20 hover:bg-white shadow-sm hover:shadow-md transition-all duration-200 font-medium text-blue-800"
             >
               {fav}
             </button>
