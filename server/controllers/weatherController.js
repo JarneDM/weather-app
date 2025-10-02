@@ -13,8 +13,8 @@ const weatherController = {
 
       const weather = {
         city: data.name,
-        temperatureC: data.main.temp,
-        temperatureF: (data.main.temp * 9) / 5 + 32,
+        temperatureC: parseInt(data.main.temp),
+        temperatureF: parseInt((data.main.temp * 9) / 5 + 32),
         condition: data.weather[0].description,
         icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
       };
