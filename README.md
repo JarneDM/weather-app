@@ -54,4 +54,5 @@ npm run dev
 
 - React + TailwindCSS
 - Node.js + Express
+- [OpenWeather API](https://openweathermap.org/api)
 - JSON file for persistence
