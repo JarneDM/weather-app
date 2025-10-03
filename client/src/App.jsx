@@ -61,8 +61,8 @@ export default function App() {
   });
 
   return (
-    <div className="flex flex-col items-center lg:justify-center min-h-screen bg-[url(./assets/background.jpg)] bg-no-repeat bg-cover">
-      <div className="w-[30%] grid items-center">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[url(./assets/background.jpg)] bg-no-repeat bg-cover">
+      <div className="w-full max-w-md grid items-center px-4 sm:px-0 sm:w-[70%] md:w-[50%] lg:w-[40%] xl:w-[30%]">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center space-y-4 bg-white/30 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg p-6 w-full"
@@ -91,7 +91,13 @@ export default function App() {
           />
         )}
 
-        <FavoritesCard favorites={favorites} fetchWeather={fetchWeather} deleteFavorite={deleteFavorite} />
+        <FavoritesCard
+          favorites={favorites}
+          fetchWeather={fetchWeather}
+          deleteFavorite={deleteFavorite}
+          setFavorites={setFavorites}
+          setError={setError}
+        />
       </div>
     </div>
   );

@@ -41,6 +41,21 @@ const favoriteController = {
       res.status(500).json({ error: "Failed to delete favorite" });
     }
   },
+
+  async changeOrder(req, res) {
+    try {
+      const { newOrder } = req.body;
+      if (!Array.isArray(newOrder)) {
+        return res.status(400).json({ error: "newOrder must be an array" });
+      }
+
+      fs.writeFileSync(favoritesFile, JSON.stringify(newOrder, null, 2));
+
+      res.json(newOrder);
+    } catch (err) {
+      res.status(500).json({ error: "failed to reorder favorites" });
+    }
+  },
 };
 
 export default favoriteController;
