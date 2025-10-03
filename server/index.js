@@ -18,6 +18,7 @@ app.get("/api/favorites", favoriteController.getFavorites);
 
 app.post("/api/favorites", favoriteController.addFavorites);
 app.delete("/api/favorites/:city", favoriteController.deleteFavorite);
+app.put("/api/favorites", favoriteController.changeOrder);
 
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
