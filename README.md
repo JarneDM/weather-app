@@ -4,6 +4,10 @@ A simple full-stack weather dashboard where users can search for a city, view cu
 
 ---
 
+## Preview
+
+<img src="client/public/screenshot.png" alt="Weather App Screenshot" width="1000"/>
+
 ## Getting Started
 
 ### Prerequisites
@@ -37,7 +41,7 @@ npm install
 # Run backend:
 
 cd server
-npm start
+npm run dev
 ```
 
 ```bash
