@@ -18,7 +18,7 @@ export default function FavoritesCard({ favorites, fetchWeather, deleteFavorite,
         setFavorites(newOrder);
 
         try {
-          await fetch("http://localhost:5000/api/favorites", {
+          await fetch("https://weather-app-v1gz.onrender.com/api/favorites", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ newOrder }),

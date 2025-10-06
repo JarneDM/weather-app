@@ -41,7 +41,7 @@ export default function App() {
   useEffect(() => {
     const loadFavorites = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/favorites");
+        const res = await fetch("https://weather-app-v1gz.onrender.com/api/favorites");
         const favs = await res.json();
         setFavorites(favs);
       } catch (err) {

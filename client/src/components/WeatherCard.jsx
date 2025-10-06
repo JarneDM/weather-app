@@ -10,7 +10,7 @@ export default function WeatherCard({ weather, favorites, setFavorites, setError
       if (isFavorite) {
         await deleteFavorite(weather.city);
       } else {
-        const res = await fetch("http://localhost:5000/api/favorites", {
+        const res = await fetch("https://weather-app-v1gz.onrender.com/api/favorites", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ city: weather.city }),

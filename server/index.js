@@ -7,11 +7,7 @@ import favoriteController from "./controllers/favoriteController.js";
 const app = express();
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-  })
-);
+app.use(cors());
 
 app.get("/api/weather/:city", weatherController.getCityWeather);
 app.get("/api/favorites", favoriteController.getFavorites);
