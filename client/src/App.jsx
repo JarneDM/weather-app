@@ -13,7 +13,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`http://localhost:5000/api/weather/${cityName}`);
+      const res = await fetch(`https://weather-app-v1gz.onrender.com/api/weather/${cityName}`);
       if (!res.ok) throw new Error("City not found");
       const data = await res.json();
       setWeather(data);
@@ -28,7 +28,7 @@ export default function App() {
 
   const deleteFavorite = async (cityName) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/favorites/${cityName}`, {
+      const res = await fetch(`https://weather-app-v1gz.onrender.com/api/favorites/${cityName}`, {
         method: "DELETE",
       });
       const updated = await res.json();
